@@ -15,9 +15,9 @@ var repository = [
 // }
 
 repository.forEach(function (item) {
-  console.log(pokemonRepository);
   document.write(item.name + " (height: " + item.height + "m" + ") " + item.types + "<br>");
 });
+//console.log(pokemonRepository);
 
 // function divide(dividend, divisor) {
 //   if (divisor === 0) {
