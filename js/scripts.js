@@ -20,26 +20,26 @@ var pokemonRepository = (function () {
   return { //return both variables to pass later on
     add: add,
     getAll: getAll,
-    addListItem: addListItem
+    // addListItem: addListItem
   };
 })();
 
 console.log(pokemonRepository.getAll()); //call the function outside the loop
 //pokemonRepository.add({ name: 'Pikachu' });
 
-var pokemonList = document.querySelector('.pokemon-list') //access pokemon list in the HTML file
+var $pokemonList = document.querySelector('.pokemon-list') //access pokemon list in the HTML file
 
-pokemonRepository.getAll().forEach(function (item) {
-  //  function addListItem(pokemon) {
-  var listItem = document.createElement('li');
-  var button = document.createElement('button');
-  button.innerText = pokemon.name;
-  $button.classList.add('pokemon-name');
-  $listItem.appendChild(button);
-  $pokemonList.appendChild(listItem)
-  //   button.addEventListener('click', function () {
-  //     showDetails(pokemon)
-  //   })
-  // }
+pokemonRepository.getAll().forEach(function (pokemon) {
+  function addListItem(pokemon) {
+    var $listItem = document.createElement('li');
+    var $button = document.createElement('button');
+    $button.innerText = pokemon.name;
+    $button.classList.add('pokemon-name');
+    $listItem.appendChild($button);
+    $pokemonList.appendChild($listItem)
+    button.addEventListener('click', function () {
+      showDetails(pokemon)
+    });
+  }
 })
 
