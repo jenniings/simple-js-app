@@ -35,11 +35,12 @@ pokemonRepository.getAll().forEach(function (pokemon) {
     var $button = document.createElement('button');
     $button.innerText = pokemon.name;
     $button.classList.add('pokemon-name');
-    $listItem.appendChild($button);
-    $pokemonList.appendChild($listItem)
-    button.addEventListener('click', function () {
+
+    $button.addEventListener('click', function () {
       showDetails(pokemon)
     });
+    $listItem.appendChild($button);
+    $pokemonList.appendChild($listItem)
   }
 })
 
