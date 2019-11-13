@@ -17,19 +17,7 @@ var pokemonRepository = (function () {
   function getAll() { //should return an array of Pokemon
     return repository;
   }
-  return { //return both variables to pass later on
-    add: add,
-    getAll: getAll,
-    // addListItem: addListItem
-  };
-})();
 
-console.log(pokemonRepository.getAll()); //call the function outside the loop
-//pokemonRepository.add({ name: 'Pikachu' });
-
-var $pokemonList = document.querySelector('.pokemon-list') //access pokemon list in the HTML file
-
-pokemonRepository.getAll().forEach(function (pokemon) {
   function addListItem(pokemon) {
     var $listItem = document.createElement('li');
     var $button = document.createElement('button');
@@ -42,5 +30,21 @@ pokemonRepository.getAll().forEach(function (pokemon) {
     $listItem.appendChild($button);
     $pokemonList.appendChild($listItem)
   }
-})
+
+  return { //return both variables to pass later on
+    add: add,
+    getAll: getAll,
+    addListItem: addListItem
+  };
+})();
+
+var $pokemonList = document.querySelector('.pokemon-list'); //access pokemon list in the HTML file
+
+pokemonRepository.getAll().forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon)
+})();
+
+
+
+
 
