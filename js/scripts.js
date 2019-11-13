@@ -1,9 +1,6 @@
 var pokemonRepository = (function () {
-  var repository = [
-    { name: "Bulbasaur", height: 0.7, types: ["grass"] },
-    { name: "Charmander", height: 0.6, types: ["fire"] },
-    { name: "Squirtle", height: 0.5, types: ["water"] }
-  ];
+  var repository = [];
+  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
   function add(pokemon) { //add a single item, a Pokemon
     if (typeof (pokemon) !== object) {
@@ -31,18 +28,57 @@ var pokemonRepository = (function () {
     $pokemonList.appendChild($listItem)
   }
 
-  function showDetails(pokemon) {
-    console.log(pokemon);
+  function showDetails(item) {
+    pokemonRepository.loadDetails(item).then(function () {
+      console.log(item);
+    });
+  }
+
+  function loadList() {
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        var pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+    })
+  }
+
+  function loadDetails(item) {
+    var url = item.detailsUrl;
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = Object.keys(details.types);
+    }).catch(function (e) {
+      console.error(e);
+    });
   }
 
   return { //return both variables to pass later on
     add: add,
     getAll: getAll,
-    addListItem: addListItem
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails
   };
 })();
 
 var $pokemonList = document.querySelector('.pokemon-list'); //access pokemon list in the HTML file
+
+pokemonRepository.loadList().then(function () {
+  pokemonRepository.getAll().forEach(function (pokemon) {
+    addListItem(pokemon);
+  });
+});
 
 pokemonRepository.getAll().forEach(function (pokemon) {
   pokemonRepository.addListItem(pokemon)
