@@ -31,6 +31,10 @@ var pokemonRepository = (function () {
     $pokemonList.appendChild($listItem)
   }
 
+  function showDetails(pokemon) {
+    console.log(pokemon);
+  }
+
   return { //return both variables to pass later on
     add: add,
     getAll: getAll,
