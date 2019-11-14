@@ -3,3 +3,11 @@
   border: none;
   color: white;
 }
+
+#modal-container {
+  display: none;
+}
+
+#modal-container.is-visible {
+  display: block;
+}
