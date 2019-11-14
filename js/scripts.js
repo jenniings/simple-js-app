@@ -8,7 +8,6 @@ var pokemonRepository = (function () {
     } else {
       repository.push(pokemon);
     }
-    repository.push(pokemon);
   }
 
   function getAll() { //should return an array of Pokemon
