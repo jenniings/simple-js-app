@@ -9,5 +9,22 @@
 }
 
 #modal-container.is-visible {
-  display: block;
+  position: fixed;
+  padding: 20px;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+
+  /* To show it above other content */
+  z-index: 999;
+
+  /* To allow scrolling if the screen is not high enough */
+  overflow: auto;
+
+  /* This is to centre the modal */
+  display: grid;
+  text-align: center;
 }

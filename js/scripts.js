@@ -57,6 +57,8 @@ var pokemonRepository = (function () {
     })
   }
 
+  var $modalContainer = document.querySelector('#modal-container');
+
   function createReusableModal() {
 
     var modal = document.createElement('div');
@@ -64,7 +66,6 @@ var pokemonRepository = (function () {
     var modalElement2 = document.createElement('div');
     modalElement2.classList.add('pokemon-info')
     modal.classList.add('modal');
-    modal
 
     var closeButtonElement = document.createElement('button');
     closeButtonElement.classList.add('modal-close');
@@ -104,7 +105,6 @@ var pokemonRepository = (function () {
 
   //Function to hide modal
   function hideModal() {
-    //var $modalContainer = document.querySelector('#modal-container');
     $modalContainer.classList.remove('is-visible');
   }
 
@@ -135,52 +135,6 @@ var pokemonRepository = (function () {
       hideModal();
     }
   })
-  // var $canvas = document.querySelector('#canvas');
-
-  // var isDrawing = false;
-  // var previousX = null;
-  // var previousY = null;
-
-  // function handleStart(e) {
-  //   isDrawing = true;
-
-  //   //Initiate previousX/previousY
-  //   var x = e.pageX; //X-coordinate of click/touch
-  //   var y = e.pageY; //Y-coordinate of click/touch
-  //   previousX = x;
-  //   previousY = y;
-  // }
-
-  // function handleEnd() {
-  //   isDrawing = false;
-  // }
-
-  // function handleMove(e) {
-  //   //To prevent drawing on hover
-  //   if (!isDrawing) {
-  //     return;
-  //   }
-
-  //   var x = e.pageX; //X-coordinate of click/touch
-  //   var y = e.pageY; //Y-coordinate of click/touch
-
-  //   //This is canvas specific
-  //   var ctx = $canvas.getContext('2d');
-
-  //   //Draw a line from previousX/previousY to x/y
-  //   ctx.beginPath();
-  //   ctx.moveTo(previousX, previousY);
-  //   ctx.lineTo(x, y);
-
-  //   //Set the style of the line
-  //   ctx.linewidth = 4;
-  //   ctx.strokeStyle = '#ff0000';
-  //   ctx.stroke();
-
-  //   //Set previous coordinates for the next move event
-  //   previousX = x;
-  //   previousY = y;
-  // }
 
   return { //return both variables to pass later on
     add: add,
